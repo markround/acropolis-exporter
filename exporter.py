@@ -439,9 +439,9 @@ def health():
     return {"status": "healthy", "source_url": source_url}
 
 @click.command()
-@click.option('--url', required=True, help='URL to fetch Acropolis scheduler data from')
-@click.option('--port', default=8080, help='Port to serve metrics on (default: 8080)')
-@click.option('--debug', is_flag=True, help='Enable debug logging')
+@click.option('--url', envvar="SCHEDULER_URL", required=True, help='URL to fetch Acropolis scheduler data from')
+@click.option('--port', envvar="EXPORTER_PORT", default=8080, help='Port to serve metrics on (default: 8080)')
+@click.option('--debug', envvar="DEBUG", is_flag=True, help='Enable debug logging')
 def main(url, port, debug):
     """Acropolis Prometheus Exporter"""
     global source_url
